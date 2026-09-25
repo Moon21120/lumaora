@@ -11,28 +11,52 @@
 
 <body>
 
+    <!-- =========================================
+         HEADER
+         ========================================= -->
+
     <header class="glass-header">
 
         <a href="#home" class="brand">
+
             <img
                 src="assets/lumaora-logo.png"
                 alt="Lumaora"
             >
 
             <span>Lumaora</span>
+
         </a>
 
         <nav>
-            <a href="#home">Home</a>
-            <a href="#projects">Projects</a>
-            <a href="#support">Support</a>
-            <a href="#account">Account</a>
+
+            <a href="#home">
+                Home
+            </a>
+
+            <a href="#projects">
+                Projects
+            </a>
+
+            <a href="#support">
+                Support
+            </a>
+
+            <a href="#account">
+                Account
+            </a>
+
         </nav>
 
     </header>
 
 
+    <!-- =========================================
+         MAIN
+         ========================================= -->
+
     <main>
+
 
         <!-- =========================================
              HOME
@@ -176,7 +200,10 @@
             class="page"
         >
 
-            <!-- LOGGED OUT -->
+
+            <!-- =====================================
+                 LOGGED OUT
+                 ===================================== -->
 
             <div
                 id="logged-out-account"
@@ -199,16 +226,16 @@
                 <div class="account-buttons">
 
                     <button
-                        class="glass-button"
                         id="login-button"
+                        class="glass-button"
                         type="button"
                     >
                         Log In
                     </button>
 
                     <button
-                        class="glass-button secondary"
                         id="signup-button"
+                        class="glass-button secondary"
                         type="button"
                     >
                         Create Account
@@ -219,7 +246,9 @@
             </div>
 
 
-            <!-- AUTH FORM -->
+            <!-- =====================================
+                 AUTH FORM
+                 ===================================== -->
 
             <div
                 id="auth-card"
@@ -228,8 +257,8 @@
             >
 
                 <p
-                    class="eyebrow"
                     id="auth-eyebrow"
+                    class="eyebrow"
                 >
                     LUMAORA ACCOUNT
                 </p>
@@ -248,6 +277,9 @@
                     class="account-form"
                 >
 
+
+                    <!-- USERNAME -->
+
                     <div
                         id="username-field"
                         class="form-field"
@@ -265,10 +297,13 @@
                             maxlength="32"
                             autocomplete="username"
                             placeholder="Enter your username"
+                            required
                         >
 
                     </div>
 
+
+                    <!-- PASSWORD -->
 
                     <div class="form-field">
 
@@ -288,6 +323,8 @@
 
                     </div>
 
+
+                    <!-- DISPLAY NAME -->
 
                     <div
                         id="display-name-field"
@@ -311,12 +348,16 @@
                     </div>
 
 
+                    <!-- AUTH MESSAGE -->
+
                     <div
                         id="auth-message"
                         class="auth-message"
                         aria-live="polite"
                     ></div>
 
+
+                    <!-- SUBMIT -->
 
                     <button
                         id="auth-submit"
@@ -329,6 +370,8 @@
                 </form>
 
 
+                <!-- SWITCH LOGIN / SIGNUP -->
+
                 <button
                     id="auth-switch"
                     class="auth-switch"
@@ -336,6 +379,9 @@
                 >
                     Create an account instead
                 </button>
+
+
+                <!-- CANCEL -->
 
                 <button
                     id="auth-cancel"
@@ -348,7 +394,9 @@
             </div>
 
 
-            <!-- LOGGED IN -->
+            <!-- =====================================
+                 LOGGED IN
+                 ===================================== -->
 
             <div
                 id="logged-in-account"
@@ -416,7 +464,16 @@
     </footer>
 
 
+    <!-- =========================================
+         SUPABASE
+         MUST LOAD BEFORE SCRIPT.JS
+         ========================================= -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- =========================================
+         LUMAORA JAVASCRIPT
+         ========================================= -->
 
     <script src="script.js"></script>
 
