@@ -25,7 +25,7 @@ const SUPPORT_URL = "#";
 const PROJECTS = [
     {
         name: "Luna AI",
-        url: "https://example.com"
+        url: "https://luna-ai-q92z.onrender.com"
     },
 
     {
