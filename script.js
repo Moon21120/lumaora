@@ -12,7 +12,7 @@
 
 const LOGO_FILENAME = "lumaora-logo.png";
 
-const SUPPORT_URL = "#";
+const SUPPORT_URL = "https://gibberish-decoder.lovable.app/support";
 
 
 /* =========================================
