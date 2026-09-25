@@ -1,0 +1,600 @@
+/* =========================================
+   LUMAORA
+   Main Styles
+   ========================================= */
+
+:root {
+    --background: #08090d;
+    --surface: rgba(255, 255, 255, 0.08);
+    --surface-hover: rgba(255, 255, 255, 0.13);
+    --border: rgba(255, 255, 255, 0.14);
+    --text: #ffffff;
+    --muted: rgba(255, 255, 255, 0.62);
+    --blur: 24px;
+    --radius: 24px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(255, 255, 255, 0.08),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(120, 120, 255, 0.08),
+            transparent 35%
+        ),
+        var(--background);
+
+    color: var(--text);
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        Inter,
+        Arial,
+        sans-serif;
+
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.glass-header {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(1100px, calc(100% - 32px));
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 12px 18px;
+
+    background: rgba(255, 255, 255, 0.075);
+    border: 1px solid var(--border);
+
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    z-index: 1000;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: white;
+    text-decoration: none;
+
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.brand img {
+    width: 34px;
+    height: 34px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+}
+
+.brand span {
+    font-size: 17px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+nav a {
+    color: var(--muted);
+    text-decoration: none;
+
+    padding: 8px 12px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+nav a:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.09);
+    transform: translateY(-1px);
+}
+
+
+/* =========================================
+   PAGE SYSTEM
+   ========================================= */
+
+main {
+    width: 100%;
+}
+
+.page {
+    display: none;
+
+    min-height: 100vh;
+
+    padding:
+        140px
+        max(24px, 5vw)
+        100px;
+
+    animation: pageIn 0.45s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes pageIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================
+   HERO
+   ========================================= */
+
+.hero {
+    width: min(900px, 100%);
+    margin: 10vh auto 80px;
+
+    text-align: center;
+}
+
+.eyebrow {
+    color: rgba(255, 255, 255, 0.48);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.18em;
+
+    margin-bottom: 14px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 9vw, 100px);
+
+    line-height: 0.95;
+
+    letter-spacing: -0.065em;
+
+    margin-bottom: 28px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff 0%,
+            rgba(255, 255, 255, 0.62) 100%
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-text {
+    max-width: 650px;
+
+    margin: auto;
+
+    color: var(--muted);
+
+    font-size: clamp(17px, 2vw, 20px);
+}
+
+.hero-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 34px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =========================================
+   GLASS ELEMENTS
+   ========================================= */
+
+.glass-card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
+
+    border-radius: var(--radius);
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.glass-card:hover {
+    background: var(--surface-hover);
+
+    border-color:
+        rgba(255, 255, 255, 0.2);
+
+    transform: translateY(-3px);
+}
+
+.about {
+    width: min(850px, 100%);
+
+    margin: auto;
+
+    padding: 42px;
+
+    text-align: center;
+}
+
+.about h2,
+.support-card h2,
+.account-card h2,
+.section-heading h2 {
+    font-size: clamp(32px, 5vw, 52px);
+
+    line-height: 1;
+
+    letter-spacing: -0.045em;
+
+    margin-bottom: 18px;
+}
+
+.about p,
+.support-card p,
+.account-card p,
+.section-heading p {
+    color: var(--muted);
+
+    font-size: 17px;
+}
+
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+.glass-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 46px;
+
+    padding: 0 20px;
+
+    border-radius: 14px;
+
+    border: 1px solid
+        rgba(255, 255, 255, 0.16);
+
+    background:
+        rgba(255, 255, 255, 0.1);
+
+    color: white;
+
+    text-decoration: none;
+
+    font: inherit;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.glass-button:hover {
+    background:
+        rgba(255, 255, 255, 0.16);
+
+    border-color:
+        rgba(255, 255, 255, 0.25);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.glass-button:active {
+    transform: scale(0.97);
+}
+
+.glass-button.secondary {
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    color:
+        rgba(255, 255, 255, 0.78);
+}
+
+
+/* =========================================
+   SECTION HEADINGS
+   ========================================= */
+
+.section-heading {
+    width: min(850px, 100%);
+
+    margin: 0 auto 42px;
+
+    text-align: center;
+}
+
+
+/* =========================================
+   PROJECTS
+   ========================================= */
+
+.project-grid {
+    width: min(1100px, 100%);
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(230px, 1fr));
+
+    gap: 18px;
+}
+
+.project-card {
+    min-height: 190px;
+
+    padding: 28px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    text-decoration: none;
+
+    color: white;
+
+    background: var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    backdrop-filter: blur(var(--blur));
+    -webkit-backdrop-filter: blur(var(--blur));
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-6px);
+
+    background: var(--surface-hover);
+
+    border-color:
+        rgba(255, 255, 255, 0.22);
+}
+
+.project-card h3 {
+    font-size: 23px;
+
+    letter-spacing: -0.025em;
+}
+
+.project-card span {
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   SUPPORT / ACCOUNT
+   ========================================= */
+
+.support-card,
+.account-card {
+    width: min(650px, 100%);
+
+    margin: 10vh auto;
+
+    padding: 44px;
+
+    text-align: center;
+}
+
+.support-card .glass-button,
+.account-buttons {
+    margin-top: 28px;
+}
+
+.account-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+footer {
+    width: min(1100px, calc(100% - 40px));
+
+    margin: 0 auto;
+
+    padding: 32px 0 42px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+
+    color: rgba(255, 255, 255, 0.48);
+
+    font-size: 13px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.08);
+}
+
+footer strong {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    .glass-header {
+        top: 10px;
+
+        width:
+            calc(100% - 20px);
+
+        padding: 10px 12px;
+    }
+
+    .brand span {
+        display: none;
+    }
+
+    nav {
+        gap: 2px;
+    }
+
+    nav a {
+        padding: 7px 8px;
+
+        font-size: 12px;
+    }
+
+    .page {
+        padding:
+            110px
+            18px
+            70px;
+    }
+
+    .hero {
+        margin-top: 7vh;
+    }
+
+    .hero h1 {
+        font-size:
+            clamp(46px, 15vw, 72px);
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons .glass-button {
+        width: 100%;
+    }
+
+    .about,
+    .support-card,
+    .account-card {
+        padding: 28px 20px;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        text-align: center;
+
+        flex-direction: column;
+
+        gap: 6px;
+    }
+}
