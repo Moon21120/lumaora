@@ -8,19 +8,19 @@
    SUPABASE
    ========================================= */
 
-// Get these from:
-// Supabase Dashboard → Project Settings → API
+const SUPABASE_URL =
+    "https://yiqywovshakzeaxnrjkl.supabase.co";
 
-const SUPABASE_URL = "https://yiqywovshakzeaxnrjkl.supabase.co";
-
-const SUPABASE_KEY = "sb_publishable_t8SwBp-pfmNOXzQtYtJZKQ_M2lJk5Ys";
+const SUPABASE_KEY =
+    "sb_publishable_t8SwBp-pfmNOXzQtYtJZKQ_M2lJk5Ys";
 
 
 /* =========================================
    EASY SETTINGS
    ========================================= */
 
-const LOGO_FILENAME = "lumaora-logo.png";
+const LOGO_FILENAME =
+    "lumaora-logo.png";
 
 const SUPPORT_URL =
     "https://gibberish-decoder.lovable.app/support";
@@ -66,24 +66,35 @@ const PROJECTS = [
 
 let supabaseClient = null;
 
-if (
-    typeof window.supabase !== "undefined" &&
-    SUPABASE_URL !== "PASTE_YOUR_SUPABASE_PROJECT_URL_HERE" &&
-    SUPABASE_KEY !== "PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE"
-) {
+try {
 
-    supabaseClient =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY,
-            {
-                auth: {
-                    persistSession: true,
-                    autoRefreshToken: true,
-                    detectSessionInUrl: true
+    if (
+        typeof window.supabase !== "undefined" &&
+        SUPABASE_URL &&
+        SUPABASE_KEY
+    ) {
+
+        supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY,
+                {
+                    auth: {
+                        persistSession: true,
+                        autoRefreshToken: true,
+                        detectSessionInUrl: true
+                    }
                 }
-            }
-        );
+            );
+
+    }
+
+} catch (error) {
+
+    console.error(
+        "Lumaora Supabase initialization failed:",
+        error
+    );
 
 }
 
@@ -109,7 +120,9 @@ function showPage(pageId) {
         document.getElementById(pageId);
 
     if (targetPage) {
+
         targetPage.classList.add("active");
+
     }
 
     window.scrollTo({
@@ -317,11 +330,6 @@ const authMessage =
         "auth-message"
     );
 
-const usernameField =
-    document.getElementById(
-        "username-field"
-    );
-
 const displayNameField =
     document.getElementById(
         "display-name-field"
@@ -367,7 +375,7 @@ let authMode = "login";
 
 
 /* =========================================
-   ACCOUNT UI
+   ACCOUNT MESSAGES
    ========================================= */
 
 function showAuthMessage(
@@ -383,10 +391,14 @@ function showAuthMessage(
     authMessage.style.color =
         isError
             ? "#ff8d8d"
-            : "rgba(255,255,255,.7)";
+            : "rgba(255,255,255,.72)";
 
 }
 
+
+/* =========================================
+   OPEN AUTH
+   ========================================= */
 
 function openAuth(mode) {
 
@@ -409,9 +421,18 @@ function openAuth(mode) {
 
     showAuthMessage("");
 
+    if (usernameInput) {
+        usernameInput.value = "";
+    }
+
     if (passwordInput) {
         passwordInput.value = "";
     }
+
+    if (displayNameInput) {
+        displayNameInput.value = "";
+    }
+
 
     if (mode === "signup") {
 
@@ -438,11 +459,6 @@ function openAuth(mode) {
         if (displayNameField) {
             displayNameField.style.display =
                 "block";
-        }
-
-        if (usernameInput) {
-            usernameInput.autocomplete =
-                "username";
         }
 
     } else {
@@ -477,6 +493,10 @@ function openAuth(mode) {
 }
 
 
+/* =========================================
+   CLOSE AUTH
+   ========================================= */
+
 function closeAuth() {
 
     if (authCard) {
@@ -495,6 +515,49 @@ function closeAuth() {
 
 
 /* =========================================
+   GET EMAIL FROM USERNAME
+   ========================================= */
+
+async function getEmailFromUsername(
+    username
+) {
+
+    const cleanUsername =
+        username
+            .trim()
+            .toLowerCase();
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.rpc(
+            "get_auth_email_by_username",
+            {
+                requested_username:
+                    cleanUsername
+            }
+        );
+
+    if (error) {
+
+        console.error(
+            "Username lookup error:",
+            error
+        );
+
+        throw new Error(
+            "Unable to find that account."
+        );
+
+    }
+
+    return data;
+
+}
+
+
+/* =========================================
    LOGIN
    ========================================= */
 
@@ -506,11 +569,10 @@ async function loginUser(
     if (!supabaseClient) {
 
         throw new Error(
-            "Supabase is not configured yet. Add your Supabase URL and publishable key to script.js."
+            "Lumaora could not connect to Supabase."
         );
 
     }
-
 
     const cleanUsername =
         username
@@ -527,38 +589,22 @@ async function loginUser(
     }
 
 
-    /*
-       Your existing Supabase function finds
-       the email belonging to the username.
-    */
-
-    const {
-        data: emailData,
-        error: emailError
-    } =
-        await supabaseClient.rpc(
-            "get_auth_email_by_username",
-            {
-                requested_username:
-                    cleanUsername
-            }
-        );
-
-
-    if (emailError) {
-
-        console.error(
-            emailError
-        );
+    if (!password) {
 
         throw new Error(
-            "Unable to find that account."
+            "Please enter your password."
         );
 
     }
 
 
-    if (!emailData) {
+    const email =
+        await getEmailFromUsername(
+            cleanUsername
+        );
+
+
+    if (!email) {
 
         throw new Error(
             "Username or password is incorrect."
@@ -568,16 +614,21 @@ async function loginUser(
 
 
     const {
-        error: loginError
+        error
     } =
         await supabaseClient.auth
             .signInWithPassword({
-                email: emailData,
+                email: email,
                 password: password
             });
 
 
-    if (loginError) {
+    if (error) {
+
+        console.error(
+            "Login error:",
+            error
+        );
 
         throw new Error(
             "Username or password is incorrect."
@@ -601,7 +652,7 @@ async function createAccount(
     if (!supabaseClient) {
 
         throw new Error(
-            "Supabase is not configured yet. Add your Supabase URL and publishable key to script.js."
+            "Lumaora could not connect to Supabase."
         );
 
     }
@@ -611,7 +662,6 @@ async function createAccount(
         username
             .trim()
             .toLowerCase();
-
 
     const cleanDisplayName =
         displayName.trim();
@@ -640,34 +690,13 @@ async function createAccount(
 
 
     /*
-       Check whether the username is already
-       being used.
+       Check username availability.
     */
 
-    const {
-        data: existingEmail,
-        error: lookupError
-    } =
-        await supabaseClient.rpc(
-            "get_auth_email_by_username",
-            {
-                requested_username:
-                    cleanUsername
-            }
+    const existingEmail =
+        await getEmailFromUsername(
+            cleanUsername
         );
-
-
-    if (lookupError) {
-
-        console.error(
-            lookupError
-        );
-
-        throw new Error(
-            "Unable to check username availability."
-        );
-
-    }
 
 
     if (existingEmail) {
@@ -680,12 +709,10 @@ async function createAccount(
 
 
     /*
-       Supabase password authentication uses an
-       email or phone identifier.
+       Supabase Auth requires an email/phone
+       identifier for password authentication.
 
-       Lumaora presents username/password to the
-       user, so we create an internal email
-       identifier behind the scenes.
+       Lumaora displays only the username.
     */
 
     const internalEmail =
@@ -725,6 +752,7 @@ async function createAccount(
     if (error) {
 
         console.error(
+            "Signup error:",
             error
         );
 
@@ -745,15 +773,14 @@ async function createAccount(
 
 
     /*
-       Your Supabase database trigger
-       automatically creates the profile row.
+       If email confirmation is enabled,
+       there will be no session yet.
     */
-
 
     if (!data.session) {
 
         throw new Error(
-            "Account created, but Supabase is waiting for email confirmation. Turn off Confirm Email in your Supabase Email provider settings for this username-only account system."
+            "Your account was created, but email confirmation is enabled in Supabase. Turn off Confirm Email in Authentication → Providers → Email."
         );
 
     }
@@ -767,7 +794,13 @@ async function createAccount(
 
 async function loadProfile() {
 
-    if (!supabaseClient) return;
+    if (!supabaseClient) {
+
+        showLoggedOut();
+
+        return;
+
+    }
 
 
     const {
@@ -779,6 +812,7 @@ async function loadProfile() {
 
     if (
         userError ||
+        !userData ||
         !userData.user
     ) {
 
@@ -812,12 +846,15 @@ async function loadProfile() {
     if (profileError) {
 
         console.error(
+            "Profile loading error:",
             profileError
         );
 
         showLoggedIn(
             user.user_metadata?.display_name ||
+            user.user_metadata?.username ||
             "Welcome",
+
             user.user_metadata?.username ||
             "username"
         );
@@ -830,6 +867,7 @@ async function loadProfile() {
     showLoggedIn(
         profile.display_name ||
         profile.username,
+
         profile.username
     );
 
@@ -913,9 +951,11 @@ if (authForm) {
 
             event.preventDefault();
 
+
             showAuthMessage(
                 "Please wait..."
             );
+
 
             if (authSubmit) {
                 authSubmit.disabled =
@@ -949,19 +989,11 @@ if (authForm) {
                         displayName
                     );
 
+                    await loadProfile();
 
                     showAuthMessage(
                         "Account created successfully!"
                     );
-
-
-                    setTimeout(() => {
-
-                        window.location.hash =
-                            "account";
-
-                    }, 500);
-
 
                 } else {
 
@@ -970,15 +1002,13 @@ if (authForm) {
                         password
                     );
 
+                    await loadProfile();
 
                     showAuthMessage(
                         "Logged in successfully!"
                     );
 
                 }
-
-
-                await loadProfile();
 
 
                 if (usernameInput) {
@@ -1089,13 +1119,24 @@ if (authCancel) {
 }
 
 
+/* =========================================
+   LOGOUT
+   ========================================= */
+
 if (logoutButton) {
 
     logoutButton.addEventListener(
         "click",
         async () => {
 
-            if (!supabaseClient) return;
+            if (!supabaseClient) {
+
+                showLoggedOut();
+
+                return;
+
+            }
+
 
             const {
                 error
@@ -1106,7 +1147,13 @@ if (logoutButton) {
             if (error) {
 
                 console.error(
+                    "Logout error:",
                     error
+                );
+
+                showAuthMessage(
+                    "Unable to log out right now.",
+                    true
                 );
 
                 return;
@@ -1124,6 +1171,10 @@ if (logoutButton) {
 
 }
 
+
+/* =========================================
+   PROFILE
+   ========================================= */
 
 if (profileButton) {
 
@@ -1148,10 +1199,25 @@ if (profileButton) {
 if (supabaseClient) {
 
     supabaseClient.auth.onAuthStateChange(
-        () => {
+        (
+            event,
+            session
+        ) => {
 
             setTimeout(
-                loadProfile,
+                () => {
+
+                    if (session) {
+
+                        loadProfile();
+
+                    } else {
+
+                        showLoggedOut();
+
+                    }
+
+                },
                 0
             );
 
