@@ -7,10 +7,10 @@
     --background: #08090d;
     --surface: rgba(255, 255, 255, 0.08);
     --surface-hover: rgba(255, 255, 255, 0.13);
-    --border: rgba(255, 255, 255, 0.14);
+    --border: rgba(255, 255, 255, 0.18);
     --text: #ffffff;
     --muted: rgba(255, 255, 255, 0.62);
-    --blur: 24px;
+    --blur: 30px;
     --radius: 24px;
 }
 
@@ -26,20 +26,22 @@ html {
 
 body {
     min-height: 100vh;
+
     background:
         radial-gradient(
             circle at 20% 10%,
-            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.09),
             transparent 32%
         ),
         radial-gradient(
             circle at 80% 80%,
-            rgba(120, 120, 255, 0.08),
+            rgba(120, 120, 255, 0.1),
             transparent 35%
         ),
         var(--background);
 
     color: var(--text);
+
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -60,42 +62,64 @@ body {
 
 .glass-header {
     position: fixed;
+
     top: 18px;
     left: 50%;
+
     transform: translateX(-50%);
 
-    width: min(1100px, calc(100% - 32px));
+    width:
+        min(1100px, calc(100% - 32px));
 
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
     padding: 12px 18px;
 
-    background: rgba(255, 255, 255, 0.075);
-    border: 1px solid var(--border);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.14),
+            rgba(255, 255, 255, 0.055)
+        );
 
-    backdrop-filter: blur(var(--blur));
-    -webkit-backdrop-filter: blur(var(--blur));
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.20);
+
+    backdrop-filter:
+        blur(30px)
+        saturate(180%);
+
+    -webkit-backdrop-filter:
+        blur(30px)
+        saturate(180%);
 
     border-radius: 20px;
 
     box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.35),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 
     z-index: 1000;
 }
 
 .brand {
     display: flex;
+
     align-items: center;
+
     gap: 10px;
 
     color: white;
+
     text-decoration: none;
 
     font-weight: 700;
+
     letter-spacing: -0.02em;
 }
 
@@ -114,12 +138,15 @@ body {
 
 nav {
     display: flex;
+
     align-items: center;
+
     gap: 6px;
 }
 
 nav a {
     color: var(--muted);
+
     text-decoration: none;
 
     padding: 8px 12px;
@@ -136,8 +163,12 @@ nav a {
 
 nav a:hover {
     color: white;
-    background: rgba(255, 255, 255, 0.09);
-    transform: translateY(-1px);
+
+    background:
+        rgba(255, 255, 255, 0.11);
+
+    transform:
+        translateY(-1px);
 }
 
 
@@ -159,7 +190,8 @@ main {
         max(24px, 5vw)
         100px;
 
-    animation: pageIn 0.45s ease;
+    animation:
+        pageIn 0.45s ease;
 }
 
 .page.active {
@@ -167,14 +199,17 @@ main {
 }
 
 @keyframes pageIn {
+
     from {
         opacity: 0;
-        transform: translateY(12px);
+        transform:
+            translateY(12px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform:
+            translateY(0);
     }
 }
 
@@ -184,29 +219,37 @@ main {
    ========================================= */
 
 .hero {
-    width: min(900px, 100%);
-    margin: 10vh auto 80px;
+    width:
+        min(900px, 100%);
+
+    margin:
+        10vh auto 80px;
 
     text-align: center;
 }
 
 .eyebrow {
-    color: rgba(255, 255, 255, 0.48);
+    color:
+        rgba(255, 255, 255, 0.48);
 
     font-size: 12px;
+
     font-weight: 700;
 
-    letter-spacing: 0.18em;
+    letter-spacing:
+        0.18em;
 
     margin-bottom: 14px;
 }
 
 .hero h1 {
-    font-size: clamp(48px, 9vw, 100px);
+    font-size:
+        clamp(48px, 9vw, 100px);
 
     line-height: 0.95;
 
-    letter-spacing: -0.065em;
+    letter-spacing:
+        -0.065em;
 
     margin-bottom: 28px;
 
@@ -219,6 +262,7 @@ main {
 
     -webkit-background-clip: text;
     background-clip: text;
+
     color: transparent;
 }
 
@@ -229,7 +273,8 @@ main {
 
     color: var(--muted);
 
-    font-size: clamp(17px, 2vw, 20px);
+    font-size:
+        clamp(17px, 2vw, 20px);
 }
 
 .hero-buttons {
@@ -250,36 +295,62 @@ main {
    ========================================= */
 
 .glass-card {
-    background: var(--surface);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.13),
+            rgba(255, 255, 255, 0.055)
+        );
 
-    border: 1px solid var(--border);
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
 
-    backdrop-filter: blur(var(--blur));
-    -webkit-backdrop-filter: blur(var(--blur));
+    backdrop-filter:
+        blur(30px)
+        saturate(180%);
 
-    border-radius: var(--radius);
+    -webkit-backdrop-filter:
+        blur(30px)
+        saturate(180%);
+
+    border-radius:
+        var(--radius);
 
     box-shadow:
-        0 25px 80px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        0 25px 80px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.04);
 
     transition:
         transform 0.25s ease,
         background 0.25s ease,
-        border-color 0.25s ease;
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .glass-card:hover {
-    background: var(--surface-hover);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.17),
+            rgba(255, 255, 255, 0.065)
+        );
 
     border-color:
-        rgba(255, 255, 255, 0.2);
+        rgba(255, 255, 255, 0.24);
 
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.17);
 }
 
 .about {
-    width: min(850px, 100%);
+    width:
+        min(850px, 100%);
 
     margin: auto;
 
@@ -292,11 +363,13 @@ main {
 .support-card h2,
 .account-card h2,
 .section-heading h2 {
-    font-size: clamp(32px, 5vw, 52px);
+    font-size:
+        clamp(32px, 5vw, 52px);
 
     line-height: 1;
 
-    letter-spacing: -0.045em;
+    letter-spacing:
+        -0.045em;
 
     margin-bottom: 18px;
 }
@@ -323,15 +396,21 @@ main {
 
     min-height: 46px;
 
-    padding: 0 20px;
+    padding:
+        0 20px;
 
     border-radius: 14px;
 
-    border: 1px solid
-        rgba(255, 255, 255, 0.16);
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
 
     background:
-        rgba(255, 255, 255, 0.1);
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.13),
+            rgba(255, 255, 255, 0.055)
+        );
 
     color: white;
 
@@ -341,8 +420,19 @@ main {
 
     cursor: pointer;
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter:
+        blur(20px)
+        saturate(180%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(180%);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.12),
+        0 10px 35px
+        rgba(0, 0, 0, 0.18);
 
     transition:
         transform 0.2s ease,
@@ -353,19 +443,28 @@ main {
 
 .glass-button:hover {
     background:
-        rgba(255, 255, 255, 0.16);
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.20),
+            rgba(255, 255, 255, 0.075)
+        );
 
     border-color:
-        rgba(255, 255, 255, 0.25);
+        rgba(255, 255, 255, 0.28);
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 
     box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.25);
+        0 12px 35px
+        rgba(0, 0, 0, 0.3),
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.18);
 }
 
 .glass-button:active {
-    transform: scale(0.97);
+    transform:
+        scale(0.97);
 }
 
 .glass-button.secondary {
@@ -382,9 +481,11 @@ main {
    ========================================= */
 
 .section-heading {
-    width: min(850px, 100%);
+    width:
+        min(850px, 100%);
 
-    margin: 0 auto 42px;
+    margin:
+        0 auto 42px;
 
     text-align: center;
 }
@@ -395,14 +496,18 @@ main {
    ========================================= */
 
 .project-grid {
-    width: min(1100px, 100%);
+    width:
+        min(1100px, 100%);
 
     margin: auto;
 
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit, minmax(230px, 1fr));
+        repeat(
+            auto-fit,
+            minmax(230px, 1fr)
+        );
 
     gap: 18px;
 }
@@ -422,38 +527,69 @@ main {
 
     color: white;
 
-    background: var(--surface);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.13),
+            rgba(255, 255, 255, 0.05)
+        );
 
     border:
-        1px solid var(--border);
+        1px solid
+        rgba(255, 255, 255, 0.18);
 
-    border-radius: var(--radius);
+    border-radius:
+        var(--radius);
 
-    backdrop-filter: blur(var(--blur));
-    -webkit-backdrop-filter: blur(var(--blur));
+    backdrop-filter:
+        blur(30px)
+        saturate(180%);
+
+    -webkit-backdrop-filter:
+        blur(30px)
+        saturate(180%);
 
     box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.25);
+        0 20px 60px
+        rgba(0, 0, 0, 0.28),
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.13),
+        inset 0 -1px 0
+        rgba(255, 255, 255, 0.035);
 
     transition:
         transform 0.25s ease,
         background 0.25s ease,
-        border-color 0.25s ease;
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .project-card:hover {
-    transform: translateY(-6px);
+    transform:
+        translateY(-6px);
 
-    background: var(--surface-hover);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 255, 255, 0.065)
+        );
 
     border-color:
-        rgba(255, 255, 255, 0.22);
+        rgba(255, 255, 255, 0.25);
+
+    box-shadow:
+        0 28px 75px
+        rgba(0, 0, 0, 0.38),
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.17);
 }
 
 .project-card h3 {
     font-size: 23px;
 
-    letter-spacing: -0.025em;
+    letter-spacing:
+        -0.025em;
 }
 
 .project-card span {
@@ -469,9 +605,11 @@ main {
 
 .support-card,
 .account-card {
-    width: min(650px, 100%);
+    width:
+        min(650px, 100%);
 
-    margin: 10vh auto;
+    margin:
+        10vh auto;
 
     padding: 44px;
 
@@ -499,11 +637,14 @@ main {
    ========================================= */
 
 footer {
-    width: min(1100px, calc(100% - 40px));
+    width:
+        min(1100px, calc(100% - 40px));
 
-    margin: 0 auto;
+    margin:
+        0 auto;
 
-    padding: 32px 0 42px;
+    padding:
+        32px 0 42px;
 
     display: flex;
 
@@ -514,16 +655,19 @@ footer {
 
     flex-wrap: wrap;
 
-    color: rgba(255, 255, 255, 0.48);
+    color:
+        rgba(255, 255, 255, 0.48);
 
     font-size: 13px;
 
     border-top:
-        1px solid rgba(255, 255, 255, 0.08);
+        1px solid
+        rgba(255, 255, 255, 0.08);
 }
 
 footer strong {
-    color: rgba(255, 255, 255, 0.8);
+    color:
+        rgba(255, 255, 255, 0.8);
 }
 
 
@@ -539,7 +683,16 @@ footer strong {
         width:
             calc(100% - 20px);
 
-        padding: 10px 12px;
+        padding:
+            10px 12px;
+
+        backdrop-filter:
+            blur(28px)
+            saturate(180%);
+
+        -webkit-backdrop-filter:
+            blur(28px)
+            saturate(180%);
     }
 
     .brand span {
@@ -551,7 +704,8 @@ footer strong {
     }
 
     nav a {
-        padding: 7px 8px;
+        padding:
+            7px 8px;
 
         font-size: 12px;
     }
@@ -569,7 +723,11 @@ footer strong {
 
     .hero h1 {
         font-size:
-            clamp(46px, 15vw, 72px);
+            clamp(
+                46px,
+                15vw,
+                72px
+            );
     }
 
     .hero-buttons {
@@ -583,7 +741,8 @@ footer strong {
     .about,
     .support-card,
     .account-card {
-        padding: 28px 20px;
+        padding:
+            28px 20px;
     }
 
     .project-grid {
