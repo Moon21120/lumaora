@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Lumaora</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <header class="glass-header">
+
         <a href="#home" class="brand">
-            <img src="assets/lumaora-logo.png" alt="Lumaora">
+            <img
+                src="assets/lumaora-logo.png"
+                alt="Lumaora"
+            >
+
             <span>Lumaora</span>
         </a>
 
@@ -21,20 +28,30 @@
             <a href="#support">Support</a>
             <a href="#account">Account</a>
         </nav>
+
     </header>
 
 
     <main>
 
-        <!-- HOME -->
+        <!-- =========================================
+             HOME
+             ========================================= -->
 
-        <section id="home" class="page active">
+        <section
+            id="home"
+            class="page active"
+        >
 
             <div class="hero">
 
-                <p class="eyebrow">LUMAORA</p>
+                <p class="eyebrow">
+                    LUMAORA
+                </p>
 
-                <h1>Technology, Reimagined.</h1>
+                <h1>
+                    Technology, Reimagined.
+                </h1>
 
                 <p class="hero-text">
                     Creating AI, software, web tools, and digital services
@@ -42,13 +59,21 @@
                 </p>
 
                 <div class="hero-buttons">
-                    <a href="#projects" class="glass-button">
+
+                    <a
+                        href="#projects"
+                        class="glass-button"
+                    >
                         Explore Projects
                     </a>
 
-                    <a href="#account" class="glass-button secondary">
+                    <a
+                        href="#account"
+                        class="glass-button secondary"
+                    >
                         Lumaora Account
                     </a>
+
                 </div>
 
             </div>
@@ -56,7 +81,9 @@
 
             <div class="about glass-card">
 
-                <h2>What is Lumaora?</h2>
+                <h2>
+                    What is Lumaora?
+                </h2>
 
                 <p>
                     Lumaora is a technology company creating AI, software,
@@ -69,15 +96,24 @@
         </section>
 
 
-        <!-- PROJECTS -->
+        <!-- =========================================
+             PROJECTS
+             ========================================= -->
 
-        <section id="projects" class="page">
+        <section
+            id="projects"
+            class="page"
+        >
 
             <div class="section-heading">
 
-                <p class="eyebrow">LUMAORA</p>
+                <p class="eyebrow">
+                    LUMAORA
+                </p>
 
-                <h2>Projects</h2>
+                <h2>
+                    Projects
+                </h2>
 
                 <p>
                     Explore the technology being created by Lumaora.
@@ -85,20 +121,32 @@
 
             </div>
 
-            <div id="project-grid" class="project-grid"></div>
+            <div
+                id="project-grid"
+                class="project-grid"
+            ></div>
 
         </section>
 
 
-        <!-- SUPPORT -->
+        <!-- =========================================
+             SUPPORT
+             ========================================= -->
 
-        <section id="support" class="page">
+        <section
+            id="support"
+            class="page"
+        >
 
             <div class="support-card glass-card">
 
-                <p class="eyebrow">SUPPORT</p>
+                <p class="eyebrow">
+                    SUPPORT
+                </p>
 
-                <h2>Need help?</h2>
+                <h2>
+                    Need help?
+                </h2>
 
                 <p>
                     You need a Gibberish Translator account to continue.
@@ -109,7 +157,7 @@
                     class="glass-button"
                     href="#"
                     target="_blank"
-                    rel="noopener"
+                    rel="noopener noreferrer"
                 >
                     Continue to Support
                 </a>
@@ -119,15 +167,29 @@
         </section>
 
 
-        <!-- ACCOUNT -->
+        <!-- =========================================
+             ACCOUNT
+             ========================================= -->
 
-        <section id="account" class="page">
+        <section
+            id="account"
+            class="page"
+        >
 
-            <div class="account-card glass-card">
+            <!-- LOGGED OUT -->
 
-                <p class="eyebrow">LUMAORA ACCOUNT</p>
+            <div
+                id="logged-out-account"
+                class="account-card glass-card"
+            >
 
-                <h2>Your Lumaora Account</h2>
+                <p class="eyebrow">
+                    LUMAORA ACCOUNT
+                </p>
+
+                <h2>
+                    Your Lumaora Account
+                </h2>
 
                 <p>
                     Sign in to access your Lumaora profile and connected
@@ -136,12 +198,192 @@
 
                 <div class="account-buttons">
 
-                    <button class="glass-button" id="login-button">
+                    <button
+                        class="glass-button"
+                        id="login-button"
+                        type="button"
+                    >
                         Log In
                     </button>
 
-                    <button class="glass-button secondary" id="signup-button">
+                    <button
+                        class="glass-button secondary"
+                        id="signup-button"
+                        type="button"
+                    >
                         Create Account
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- AUTH FORM -->
+
+            <div
+                id="auth-card"
+                class="account-card glass-card"
+                style="display: none;"
+            >
+
+                <p
+                    class="eyebrow"
+                    id="auth-eyebrow"
+                >
+                    LUMAORA ACCOUNT
+                </p>
+
+                <h2 id="auth-title">
+                    Log In
+                </h2>
+
+                <p id="auth-description">
+                    Log in to your Lumaora account.
+                </p>
+
+
+                <form
+                    id="auth-form"
+                    class="account-form"
+                >
+
+                    <div
+                        id="username-field"
+                        class="form-field"
+                    >
+
+                        <label for="username">
+                            Username
+                        </label>
+
+                        <input
+                            id="username"
+                            name="username"
+                            type="text"
+                            minlength="3"
+                            maxlength="32"
+                            autocomplete="username"
+                            placeholder="Enter your username"
+                        >
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            minlength="6"
+                            autocomplete="current-password"
+                            placeholder="Enter your password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div
+                        id="display-name-field"
+                        class="form-field"
+                        style="display: none;"
+                    >
+
+                        <label for="display-name">
+                            Display Name
+                        </label>
+
+                        <input
+                            id="display-name"
+                            name="display-name"
+                            type="text"
+                            maxlength="50"
+                            autocomplete="name"
+                            placeholder="Choose a display name"
+                        >
+
+                    </div>
+
+
+                    <div
+                        id="auth-message"
+                        class="auth-message"
+                        aria-live="polite"
+                    ></div>
+
+
+                    <button
+                        id="auth-submit"
+                        class="glass-button"
+                        type="submit"
+                    >
+                        Log In
+                    </button>
+
+                </form>
+
+
+                <button
+                    id="auth-switch"
+                    class="auth-switch"
+                    type="button"
+                >
+                    Create an account instead
+                </button>
+
+                <button
+                    id="auth-cancel"
+                    class="auth-cancel"
+                    type="button"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+
+            <!-- LOGGED IN -->
+
+            <div
+                id="logged-in-account"
+                class="account-card glass-card"
+                style="display: none;"
+            >
+
+                <p class="eyebrow">
+                    LUMAORA ACCOUNT
+                </p>
+
+                <h2 id="profile-display-name">
+                    Welcome
+                </h2>
+
+                <p id="profile-username">
+                    @username
+                </p>
+
+                <div class="account-buttons">
+
+                    <button
+                        id="profile-button"
+                        class="glass-button"
+                        type="button"
+                    >
+                        Profile
+                    </button>
+
+                    <button
+                        id="logout-button"
+                        class="glass-button secondary"
+                        type="button"
+                    >
+                        Log Out
                     </button>
 
                 </div>
@@ -153,16 +395,28 @@
     </main>
 
 
+    <!-- =========================================
+         FOOTER
+         ========================================= -->
+
     <footer>
 
-        <strong>Lumaora</strong>
+        <strong>
+            Lumaora
+        </strong>
 
-        <span>Technology, Reimagined.</span>
+        <span>
+            Technology, Reimagined.
+        </span>
 
-        <span>© 2026 Lumaora. All rights reserved.</span>
+        <span>
+            © 2026 Lumaora. All rights reserved.
+        </span>
 
     </footer>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script src="script.js"></script>
 
